@@ -14,15 +14,28 @@ class App extends Component {
           {
             name:" Prince Antwi",
             contact: "0572211378",
-            location: "lapaz"
+            location: "lapaz",
+            id:"EIFJ2994303"
           }
         ]
       }
     }
     handleAddUser = (user) => {
+      user.id = Math.random().toString;
       this.setState({ 
         users: [...this.state.users, user ]});
     };
+    handleDelete =(id) =>{
+   let undeleted = this.state.users.filter((user) => user.id !== id)
+   this.setState({ 
+     users: undeleted
+   })
+    }
+    handleEidth =(id, updateUser) =>{
+    this.setState({
+      users : this.state.users.map(user=> user.id === id ? updateUser: user)
+    })
+    }
    
   render() {
     return (
@@ -30,10 +43,10 @@ class App extends Component {
       <Container>
         <Row>
           <Col xs={6} md={4}>
-            <AddUser adduser={this.handleAddUser} />
+            <AddUser adduser={this.handleAddUser}  />
           </Col>
-          <Col xs={6} md={8}>
-            <UserForm  userDate={this.state.users}/>
+          <Col xs={6} md={2}>
+            <UserForm  userDate={this.state.users} deleteuser={this.handleDelete} eidthuser={this.handleEidth}/>
           </Col>
         </Row>
       </Container>
