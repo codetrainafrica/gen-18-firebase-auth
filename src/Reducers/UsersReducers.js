@@ -1,3 +1,5 @@
+import { ADD_USERS } from "../AddAction/AddAction"
+
 const initiaState ={
     users: [
         {
@@ -10,10 +12,11 @@ const initiaState ={
 }
 
 
-var UsersReducers =(state = initiaState,action ) =>{
+let UsersReducers =(state = initiaState,action ) =>{
+
     switch(action.type){
-        case 'Add Contact':
-        return(state)
+        case ADD_USERS:
+        return{...state, users:[...state.users, action.payload]}
 
 default:
     return (state)
