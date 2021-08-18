@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./UserForm.css";
+import { AddAction } from "../AddAction/AddAction";
+import { connect } from "react-redux";
 class AddUser extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,7 @@ class AddUser extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.adduser(this.state);
+    this.props.NewUser(this.state);
     this.setState({
       name: "",
       contact: "",
@@ -64,5 +66,8 @@ class AddUser extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  NewUser: AddAction,
+};
 
-export default AddUser;
+export default connect(null, mapDispatchToProps)(AddUser);
