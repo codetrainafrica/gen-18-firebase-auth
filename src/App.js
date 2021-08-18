@@ -7,19 +7,7 @@ import './App.css';
 import React, { Component } from 'react';
 
 class App extends Component {
-    constructor(props){
-      super(props)
-      this.state= {
-        users: [
-          {
-            name:" Prince Antwi",
-            contact: "0572211378",
-            location: "lapaz",
-            id:"EIFJ2994303"
-          }
-        ]
-      }
-    }
+
     handleAddUser = (user) => {
       user.id = Math.random().toString;
       this.setState({ 
@@ -46,7 +34,7 @@ class App extends Component {
             <AddUser adduser={this.handleAddUser}  />
           </Col>
           <Col xs={6} md={2}>
-            <UserForm  userDate={this.state.users} deleteuser={this.handleDelete} eidthuser={this.handleEidth}/>
+            <UserForm  />
           </Col>
         </Row>
       </Container>
