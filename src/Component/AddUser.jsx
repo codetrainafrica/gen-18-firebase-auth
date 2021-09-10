@@ -40,6 +40,7 @@ class AddUser extends Component {
           value={this.state.name}
           onChange={this.handleChange}
           placeholder={this.props.name}
+          required
         />
         <br />
         Contact: <br />
@@ -49,6 +50,7 @@ class AddUser extends Component {
           name="contact"
           value={this.state.contact}
           onChange={this.handleChange}
+          required
         />
         <br />
         Location: <br />
@@ -59,6 +61,7 @@ class AddUser extends Component {
           value={this.state.location}
           onChange={this.handleChange}
           placeholder={this.props.location}
+          required
         />
         <br />
         <input className="form_button" type="submit" value="Submit" />
