@@ -3,6 +3,15 @@ export const DELETE_USER = "DELETE_USER"
 export const EDIT_USER = "EDIT_USER"
 
 export const AddAction =(user)=>{
+
+    return(dispact,state,{getFirestore})=>{
+        getFirestore()
+        .collection('contact')
+        .add(user)
+        .then((docs)=>{
+            console.log(docs)
+        })
+    }
 return{
     type: ADD_USERS,
     payload: user
