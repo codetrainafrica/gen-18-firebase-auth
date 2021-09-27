@@ -25,6 +25,8 @@ let UsersReducers =(state = initiaState,action ) =>{
        case EDIT_USER:
          const newUser = state.users.map((users)=> users.id === action.payload.id ? action.payload : users )
         return{...state, users : newUser}
+        case 'SET_ALL_CONTACT':
+          return{...state,users:action.payload}
 default:
     return (state)
     }
