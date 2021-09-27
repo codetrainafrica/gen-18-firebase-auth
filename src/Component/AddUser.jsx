@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./UserForm.css";
-import { AddAction } from "../AddAction/AddAction";
+import { AddAction, getALLcontact } from "../AddAction/AddAction";
 import { connect } from "react-redux";
 class AddUser extends Component {
   constructor(props) {
@@ -11,6 +11,10 @@ class AddUser extends Component {
       location: "",
     };
   }
+  componentDidMount() {
+    this.props.getALLcontact();
+  }
+
   handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -71,6 +75,7 @@ class AddUser extends Component {
 }
 const mapDispatchToProps = {
   NewUser: AddAction,
+  getALLcontact: getALLcontact,
 };
 
 export default connect(null, mapDispatchToProps)(AddUser);
