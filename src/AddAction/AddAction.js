@@ -12,10 +12,7 @@ export const AddAction =(user)=>{
             console.log(docs)
         })
     }
-return{
-    type: ADD_USERS,
-    payload: user
-}
+
 }
 export const deleteUser =(user_id)=>{
     return{
@@ -29,3 +26,17 @@ export const deleteUser =(user_id)=>{
             payload: updatedcontct
         }
         }
+        export const getALLcontact=()=>{
+            return(dispatch,state,{getFirestore})=>{
+              getFirestore().collection('contact').onSnapshot((snapshot)=>{
+                let contact = [];
+                snapshot.forEach((doc)=>{
+                  contact.push(doc.data())
+                })
+                dispatch({
+                  type:'SET_ALL_CONTACT',
+                  payload:contact
+                })
+              })
+            }
+          }
