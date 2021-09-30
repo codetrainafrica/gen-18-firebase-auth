@@ -4,12 +4,7 @@ import { EDIT_USER } from "../AddAction/AddAction"
 
 const initiaState ={
     users: [
-        {
-          name:" Prince Antwi",
-          contact: "0572211378",
-          location: "lapaz",
-          id:"w4fwufu2i2"
-        }
+     
       ]
 }
 
