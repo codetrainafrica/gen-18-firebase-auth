@@ -15,15 +15,15 @@ export const AddAction =(user)=>{
 
 }
 export const deleteUser =(user_id)=>{
-    return{
-        type: DELETE_USER,
-        payload: user_id
+   
+    return(dispatch,state,{getFirestore})=>{
+      getFirestore().collection('contact').doc(user_id).delete().then(()=>{})
     }
     }
     export const editUser =(updatedcontct)=>{
-        return{
-            type: EDIT_USER,
-            payload: updatedcontct
+      
+        return(dispatch,state,{getFirestore})=>{
+          getFirestore().collection('contact').doc(updatedcontct.id).set(updatedcontct).then(()=>{})
         }
         }
         export const getALLcontact=()=>{
@@ -31,7 +31,7 @@ export const deleteUser =(user_id)=>{
               getFirestore().collection('contact').onSnapshot((snapshot)=>{
                 let contact = [];
                 snapshot.forEach((doc)=>{
-                  contact.push(doc.data())
+                  contact.push({...doc.data(),id:doc.id})
                 })
                 dispatch({
                   type:'SET_ALL_CONTACT',
