@@ -8,10 +8,12 @@ import {
 import { getFirestore, reduxFirestore } from "redux-firestore";
 import thunk from "redux-thunk";
 import firebase from "../Firebase/Config";
+import authReducer from "../Reducers/authReducer";
 
 let reducers = combineReducers({
   user: UsersReducers,
   firebase: firebaseReducer,
+  auth: authReducer,
 });
 
 var store = createStore(

@@ -1,15 +1,18 @@
+import { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useHistory } from "react-router";
 import Userlist from "../Component/Userlist";
 import AddUser from "../Component/AddUser";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { logout } from "../actions/authActions";
 
-const Home = () => {
+const Home = (props) => {
   const dispatch = useDispatch();
+  const { replace } = useHistory();
 
   return (
     <>
-      <button onClick={() => dispatch(logout())}>Logout</button>
+      <button onClick={() => dispatch(logout(replace))}>Logout</button>
       <Container>
         <Row>
           <Col xs={6} md={4}>
@@ -24,4 +27,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapSTateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapSTateToProps)(Home);

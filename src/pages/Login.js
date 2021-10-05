@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { connect, useDispatch } from "react-redux";
 import {
   registerUserWithEmail,
   loginWithGoogle,
   loginWIthEmail,
 } from "../actions/authActions";
 
-function RegisterForm() {
+function LoginForm(props) {
   const dispatch = useDispatch();
+  const { replace } = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ function RegisterForm() {
     let email = e.target.elements.email.value;
     let password = e.target.elements.password.value;
 
-    dispatch(registerUserWithEmail(email, password));
+    dispatch(loginWIthEmail(email, password, replace));
   };
 
   const authWithGoogle = (e) => {
@@ -36,7 +38,7 @@ function RegisterForm() {
           Submit
         </button>
 
-        <Link to="/login">Already have an account? Sign in</Link>
+        <Link to="/register">Don't have an account? Sign up</Link>
 
         <button onClick={authWithGoogle}>Sign in with Google</button>
       </form>
@@ -44,4 +46,8 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+const mapSTateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+
+export default connect(mapSTateToProps)(LoginForm);
