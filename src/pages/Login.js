@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-import {
-  registerUserWithEmail,
-  loginWithGoogle,
-  loginWIthEmail,
-} from "../actions/authActions";
+import { loginUserWithEmail } from "../actions/authActions";
+import { useHistory } from "react-router-dom";
 
 function LoginForm(props) {
   const dispatch = useDispatch();
@@ -18,12 +14,7 @@ function LoginForm(props) {
     let email = e.target.elements.email.value;
     let password = e.target.elements.password.value;
 
-    dispatch(loginWIthEmail(email, password, replace));
-  };
-
-  const authWithGoogle = (e) => {
-    e.preventDefault();
-    dispatch(loginWithGoogle());
+    dispatch(loginUserWithEmail(email, password, replace));
   };
 
   return (
@@ -40,14 +31,10 @@ function LoginForm(props) {
 
         <Link to="/register">Don't have an account? Sign up</Link>
 
-        <button onClick={authWithGoogle}>Sign in with Google</button>
+        {/* <button onClick={authWithGoogle}>Sign in with Google</button> */}
       </form>
     </div>
   );
 }
 
-const mapSTateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-});
-
-export default connect(mapSTateToProps)(LoginForm);
+export default LoginForm;

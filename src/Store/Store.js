@@ -12,8 +12,6 @@ import authReducer from "../Reducers/authReducer";
 
 let reducers = combineReducers({
   user: UsersReducers,
-  firebase: firebaseReducer,
-  auth: authReducer,
 });
 
 var store = createStore(

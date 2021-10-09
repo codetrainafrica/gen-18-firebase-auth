@@ -27,8 +27,4 @@ const Home = (props) => {
   );
 };
 
-const mapSTateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-});
-
-export default connect(mapSTateToProps)(Home);
+export default Home;
